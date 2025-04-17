@@ -1,0 +1,18 @@
+export default {
+  appName: "Workly",
+  save: "Lưu",
+  cancel: "Hủy",
+  delete: "Xóa",
+  edit: "Sửa",
+  add: "Thêm",
+  confirm: "Xác nhận",
+  yes: "Có",
+  no: "Không",
+  ok: "OK",
+  loading: "Đang tải...",
+  error: "Lỗi",
+  success: "Thành công",
+  retry: "Thử lại",
+  warning: "Cảnh báo",
+  viewAll: "Xem tất cả",
+}

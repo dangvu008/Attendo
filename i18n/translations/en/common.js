@@ -1,0 +1,18 @@
+export default {
+  appName: "Workly",
+  save: "Save",
+  cancel: "Cancel",
+  delete: "Delete",
+  edit: "Edit",
+  add: "Add",
+  confirm: "Confirm",
+  yes: "Yes",
+  no: "No",
+  ok: "OK",
+  loading: "Loading...",
+  error: "Error",
+  success: "Success",
+  retry: "Retry",
+  warning: "Warning",
+  viewAll: "View All",
+}
