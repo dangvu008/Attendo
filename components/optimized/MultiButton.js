@@ -16,7 +16,7 @@ import {
 import { MaterialIcons } from "@expo/vector-icons";
 import * as Haptics from "expo-haptics";
 import { useAppContext } from "../../context/AppContext";
-import { useTranslation } from "../../i18n/simple-useTranslation";
+import { useLocalization } from "../../localization";
 import { COLORS } from "../../constants/colors";
 
 // Tối ưu hóa component con với React.memo
@@ -41,7 +41,7 @@ const MultiButton = ({
   logs = [],
 }) => {
   const { userSettings } = useAppContext();
-  const { t } = useTranslation();
+  const { t } = useLocalization();
   const [currentStatus, setCurrentStatus] = useState(status);
   const [workDuration, setWorkDuration] = useState(0);
   const [isLogsVisible, setIsLogsVisible] = useState(showLogs);
