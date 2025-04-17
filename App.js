@@ -1,2 +1,2 @@
-import App from "./App-original";
+import App from "./App-bottom-tabs";
 export default App;
