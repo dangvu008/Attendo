@@ -1,4 +1,4 @@
-import { useTranslation as useI18nTranslation } from "react-i18next";
+import { useTranslation as useI18nTranslation } from "../react-i18next";
 import { loadLanguageNamespaces } from "./i18n";
 import { TranslationKey } from "./types";
 
