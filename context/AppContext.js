@@ -4,7 +4,6 @@ import { createContext, useState, useEffect, useContext } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { STORAGE_KEYS } from "../constants/storage";
 // Import từ hệ thống đa ngôn ngữ mới
-import { useLocalization } from "../localization";
 import { getDayOfWeek } from "../utils/dateUtils";
 
 const AppContext = createContext();
@@ -298,8 +297,11 @@ export const AppProvider = ({ children }) => {
       ) {
         try {
           // Sử dụng hệ thống đa ngôn ngữ mới
-          const { changeLanguage } = useLocalization();
-          changeLanguage(newSettings.language);
+          // Sử dụng import để tránh lỗi React Hooks
+          import("../localization").then(({ useLocalization }) => {
+            const { changeLanguage } = useLocalization();
+            changeLanguage(newSettings.language);
+          });
         } catch (error) {
           console.error("Error changing language:", error);
         }

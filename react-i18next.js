@@ -3,13 +3,15 @@
  * để tương thích với code hiện tại mà không cần thay đổi nhiều
  */
 
-import { useLocalization } from './localization';
-import Trans from './Trans';
+import React from "react";
+import { useLocalization } from "./localization";
+import Trans from "./Trans";
+import TransWithoutContext from "./TransWithoutContext";
 
 // Giả lập useTranslation hook từ react-i18next
 export const useTranslation = (namespace) => {
   const { t, changeLanguage, getCurrentLanguage } = useLocalization();
-  
+
   return {
     t,
     i18n: {
@@ -18,12 +20,12 @@ export const useTranslation = (namespace) => {
       // Thêm các phương thức giả lập khác nếu cần
       hasResourceBundle: () => true,
       addResourceBundle: () => {},
-    }
+    },
   };
 };
 
-// Export Trans component
-export { Trans };
+// Export Trans components
+export { Trans, TransWithoutContext };
 
 // Giả lập withTranslation HOC
 export const withTranslation = (namespace) => (Component) => {
@@ -49,6 +51,7 @@ export default {
   useTranslation,
   withTranslation,
   Trans,
+  TransWithoutContext,
   Translation,
   I18nextProvider,
 };
