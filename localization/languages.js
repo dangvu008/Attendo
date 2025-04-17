@@ -20,7 +20,7 @@ export const languages = {
     viewAll: "Xem tất cả",
     showLogs: "Hiện nhật ký",
     hideLogs: "Ẩn nhật ký",
-    
+
     // Home
     todayShifts: "Ca làm việc hôm nay",
     weeklySchedule: "Lịch tuần này",
@@ -39,15 +39,18 @@ export const languages = {
     logCheckOut: "Chấm Công Ra",
     logComplete: "Hoàn Tất",
     workingFor: "Đang làm việc được {duration}",
-    welcomeMessage: "Chào mừng đến với Workly, ứng dụng quản lý ca làm việc cá nhân của bạn!",
+    welcomeMessage:
+      "Chào mừng đến với Workly, ứng dụng quản lý ca làm việc cá nhân của bạn!",
     weatherAlert: "Thời tiết hiện tại: {temperature}°C - {condition}",
-    shiftInstructions: "Nhấn Đi Làm để bắt đầu ca làm việc, sau đó sử dụng Chấm Công Vào khi bạn đến nơi.",
-    reminderNote: "Bạn có {count} lời nhắc đã lên lịch cho hôm nay. Xem tất cả.",
+    shiftInstructions:
+      "Nhấn Đi Làm để bắt đầu ca làm việc, sau đó sử dụng Chấm Công Vào khi bạn đến nơi.",
+    reminderNote:
+      "Bạn có {count} lời nhắc đã lên lịch cho hôm nay. Xem tất cả.",
     helpText: "Cần trợ giúp? Truy cập trung tâm trợ giúp hoặc liên hệ hỗ trợ.",
     todayLogs: "Nhật ký hôm nay",
     activeShift: "Ca làm việc hiện tại",
     punch: "Ký công",
-    
+
     // Settings
     settings: "Cài đặt",
     interface: "Giao diện",
@@ -63,12 +66,10 @@ export const languages = {
     shiftChangeReminder: "Nhắc đổi ca",
     weatherWarning: "Cảnh báo thời tiết",
     updateLocation: "Cập nhật vị trí",
-    backupData: "Sao lưu dữ liệu",
-    restoreData: "Phục hồi dữ liệu",
     language: "Ngôn ngữ",
     about: "Về ứng dụng",
     hapticFeedback: "Phản hồi xúc giác",
-    
+
     // Shifts
     shiftList: "Danh sách ca làm việc",
     shiftDetails: "Chi tiết ca làm việc",
@@ -90,8 +91,10 @@ export const languages = {
     deleteConfirm: "Bạn có chắc chắn muốn xóa ca",
     nameRequired: "Vui lòng nhập tên ca làm việc",
     daysRequired: "Vui lòng chọn ít nhất một ngày trong tuần",
-    startBeforeEnd: "Thời gian bắt đầu phải trước thời gian kết thúc giờ hành chính",
-    officeEndBeforeMax: "Thời gian kết thúc giờ hành chính phải trước hoặc bằng thời gian kết thúc tối đa",
+    startBeforeEnd:
+      "Thời gian bắt đầu phải trước thời gian kết thúc giờ hành chính",
+    officeEndBeforeMax:
+      "Thời gian kết thúc giờ hành chính phải trước hoặc bằng thời gian kết thúc tối đa",
     mon: "T2",
     tue: "T3",
     wed: "T4",
@@ -100,8 +103,9 @@ export const languages = {
     sat: "T7",
     sun: "CN",
     shiftTip: "Đối với ca qua đêm, hãy đặt thời gian kết thúc sau nửa đêm.",
-    breakExplanation: "Thời gian nghỉ {duration} phút sẽ được tự động trừ khỏi giờ làm việc của bạn.",
-    
+    breakExplanation:
+      "Thời gian nghỉ {duration} phút sẽ được tự động trừ khỏi giờ làm việc của bạn.",
+
     // Alarm
     alarm: "Báo thức",
     timeToWork: "Đến giờ làm việc",
@@ -109,7 +113,7 @@ export const languages = {
     shiftEndingSoon: "Ca {name} sẽ kết thúc trong {minutes} phút nữa.",
     dismissAlarm: "Tắt báo thức",
     displayTime: "Thời gian hiển thị",
-    
+
     // Backup
     backup: "Sao lưu",
     backupData: "Sao lưu dữ liệu",
@@ -119,16 +123,17 @@ export const languages = {
     exportError: "Lỗi khi xuất dữ liệu",
     importError: "Lỗi khi nhập dữ liệu",
     confirmRestore: "Xác nhận khôi phục",
-    confirmRestoreMessage: "Dữ liệu hiện tại sẽ bị ghi đè. Bạn có chắc chắn muốn tiếp tục?",
+    confirmRestoreMessage:
+      "Dữ liệu hiện tại sẽ bị ghi đè. Bạn có chắc chắn muốn tiếp tục?",
     importData: "Nhập dữ liệu",
-    
+
     // Attendance
     checkInSuccess: "Chấm công vào thành công",
     checkOutSuccess: "Chấm công ra thành công",
     confirmCheckOut: "Xác nhận chấm công ra",
     confirmCheckOutMessage: "Bạn có chắc chắn muốn chấm công ra bây giờ?",
   },
-  
+
   en: {
     // Common
     appName: "Workly",
@@ -149,7 +154,7 @@ export const languages = {
     viewAll: "View All",
     showLogs: "Show Logs",
     hideLogs: "Hide Logs",
-    
+
     // Home
     todayShifts: "Today's Shifts",
     weeklySchedule: "Weekly Schedule",
@@ -170,13 +175,14 @@ export const languages = {
     workingFor: "Working for {duration}",
     welcomeMessage: "Welcome to Workly, your personal shift management app!",
     weatherAlert: "Current weather: {temperature}°C - {condition}",
-    shiftInstructions: "Tap Go to Work to start your shift, then use Check In when you arrive.",
+    shiftInstructions:
+      "Tap Go to Work to start your shift, then use Check In when you arrive.",
     reminderNote: "You have {count} reminder(s) scheduled for today. View all.",
     helpText: "Need help? Visit our help center or contact support.",
     todayLogs: "Today's Logs",
     activeShift: "Active Shift",
     punch: "Punch",
-    
+
     // Settings
     settings: "Settings",
     interface: "Interface",
@@ -192,12 +198,10 @@ export const languages = {
     shiftChangeReminder: "Shift Change Reminder",
     weatherWarning: "Weather Warning",
     updateLocation: "Update Location",
-    backupData: "Backup Data",
-    restoreData: "Restore Data",
     language: "Language",
     about: "About",
     hapticFeedback: "Haptic Feedback",
-    
+
     // Shifts
     shiftList: "Shift List",
     shiftDetails: "Shift Details",
@@ -220,7 +224,8 @@ export const languages = {
     nameRequired: "Please enter a shift name",
     daysRequired: "Please select at least one day of the week",
     startBeforeEnd: "Start time must be before office end time",
-    officeEndBeforeMax: "Office end time must be before or equal to maximum end time",
+    officeEndBeforeMax:
+      "Office end time must be before or equal to maximum end time",
     mon: "Mon",
     tue: "Tue",
     wed: "Wed",
@@ -229,8 +234,9 @@ export const languages = {
     sat: "Sat",
     sun: "Sun",
     shiftTip: "For overnight shifts, set the end time to be after midnight.",
-    breakExplanation: "A {duration} minute break is automatically deducted from your work hours.",
-    
+    breakExplanation:
+      "A {duration} minute break is automatically deducted from your work hours.",
+
     // Alarm
     alarm: "Alarm",
     timeToWork: "Time to work",
@@ -238,7 +244,7 @@ export const languages = {
     shiftEndingSoon: "Shift {name} will end in {minutes} minutes.",
     dismissAlarm: "Dismiss Alarm",
     displayTime: "Display time",
-    
+
     // Backup
     backup: "Backup",
     backupData: "Backup Data",
@@ -248,13 +254,14 @@ export const languages = {
     exportError: "Error exporting data",
     importError: "Error importing data",
     confirmRestore: "Confirm Restore",
-    confirmRestoreMessage: "Current data will be overwritten. Are you sure you want to continue?",
+    confirmRestoreMessage:
+      "Current data will be overwritten. Are you sure you want to continue?",
     importData: "Import Data",
-    
+
     // Attendance
     checkInSuccess: "Check-in successful",
     checkOutSuccess: "Check-out successful",
     confirmCheckOut: "Confirm Check Out",
     confirmCheckOutMessage: "Are you sure you want to check out now?",
-  }
+  },
 };

@@ -7,7 +7,7 @@ import { MaterialIcons } from "@expo/vector-icons";
 import { AppProvider } from "./context/AppContext";
 import { ThemeProvider } from "./context/ThemeContext";
 import HomeScreen from "./screens/HomeScreen";
-import ShiftsScreen from "./screens/ShiftsScreen";
+import ShiftsScreen from "./screens/ShiftListScreen";
 import ShiftDetailScreen from "./screens/ShiftDetailScreen";
 import SettingsScreen from "./screens/SettingsScreen";
 import WeatherScreen from "./screens/WeatherScreen";
@@ -31,7 +31,11 @@ const ShiftsStackNavigator = () => (
       headerTintColor: COLORS.white,
     }}
   >
-    <Stack.Screen name="ShiftsList" component={ShiftsScreen} options={{ title: "Shifts" }} />
+    <Stack.Screen
+      name="ShiftsList"
+      component={ShiftsScreen}
+      options={{ title: "Shifts" }}
+    />
     <Stack.Screen
       name="ShiftDetail"
       component={ShiftDetailScreen}
@@ -51,10 +55,10 @@ export default function App() {
       try {
         // Giữ splash screen hiển thị
         await SplashScreen.preventAutoHideAsync();
-        
+
         // Đánh dấu đã tải xong
         setIsLoading(false);
-        
+
         // Cho phép ẩn splash screen
         await SplashScreen.hideAsync();
       } catch (error) {
@@ -106,14 +110,20 @@ export default function App() {
                     iconName = "settings";
                   }
 
-                  return <MaterialIcons name={iconName} size={size} color={color} />;
+                  return (
+                    <MaterialIcons name={iconName} size={size} color={color} />
+                  );
                 },
                 tabBarActiveTintColor: COLORS.primary,
                 tabBarInactiveTintColor: COLORS.darkGray,
               })}
             >
               <Tab.Screen name="Home" component={HomeScreen} />
-              <Tab.Screen name="Shifts" component={ShiftsStackNavigator} options={{ headerShown: false }} />
+              <Tab.Screen
+                name="Shifts"
+                component={ShiftsStackNavigator}
+                options={{ headerShown: false }}
+              />
               <Tab.Screen name="Notes" component={NotesScreen} />
               <Tab.Screen name="Weather" component={WeatherScreen} />
               <Tab.Screen name="Settings" component={SettingsScreen} />

@@ -15,9 +15,9 @@ const SimpleI18nTest = () => {
       setLanguage(getCurrentLanguage());
       setIsLoaded(true);
     };
-    
+
     loadLanguage();
-  }, []);
+  }, [getCurrentLanguage]);
 
   const toggleLanguage = () => {
     const newLanguage = language === "en" ? "vi" : "en";
@@ -36,26 +36,32 @@ const SimpleI18nTest = () => {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>{t("common.appName")}</Text>
-      
+
       <View style={styles.section}>
         <Text style={styles.sectionTitle}>{t("home.todayShifts")}</Text>
         <Text>{t("home.noShiftsToday")}</Text>
       </View>
-      
+
       <View style={styles.section}>
         <Text style={styles.sectionTitle}>{t("settings.settings")}</Text>
-        <Text>{t("settings.language")}: {language === "en" ? "English" : "Tiếng Việt"}</Text>
+        <Text>
+          {t("settings.language")}:{" "}
+          {language === "en" ? "English" : "Tiếng Việt"}
+        </Text>
       </View>
-      
+
       <View style={styles.section}>
         <Text style={styles.sectionTitle}>Trans Component Test:</Text>
         <Trans i18nKey="home.welcomeMessage">
-          Welcome to <Text style={styles.highlight}>Workly</Text>, your personal shift management app!
+          Welcome to <Text style={styles.highlight}>Workly</Text>, your personal
+          shift management app!
         </Trans>
       </View>
-      
+
       <Button
-        title={language === "en" ? "Switch to Vietnamese" : "Chuyển sang tiếng Anh"}
+        title={
+          language === "en" ? "Switch to Vietnamese" : "Chuyển sang tiếng Anh"
+        }
         onPress={toggleLanguage}
       />
     </View>
