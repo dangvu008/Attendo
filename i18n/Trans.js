@@ -1,5 +1,10 @@
-// Direct re-export of the Trans component from react-i18next
-// This avoids any circular dependencies or initialization issues
-import { Trans } from "react-i18next";
+// Đơn giản hóa hoàn toàn - import trực tiếp từ react-i18next
+import React from "react";
+import { Trans as ReactI18nextTrans } from "react-i18next";
+
+// Tạo một component wrapper đơn giản
+function Trans(props) {
+  return <ReactI18nextTrans {...props} />;
+}
 
 export default Trans;

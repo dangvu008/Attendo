@@ -1,22 +1,22 @@
-"use client"
+"use client";
 
-import { useEffect, useRef } from "react"
-import { View, StyleSheet, Animated, Dimensions } from "react-native"
-import { COLORS } from "../constants/colors"
-import { MaterialIcons } from "@expo/vector-icons"
-import GradientBackground from "./GradientBackground"
-import AnimatedLogo from "./AnimatedLogo"
+import { useEffect, useRef } from "react";
+import { View, StyleSheet, Animated, Dimensions } from "react-native";
+import { COLORS } from "../constants/colors";
+import { MaterialIcons } from "@expo/vector-icons";
+import GradientBackground from "./GradientBackground";
+import AnimatedLogo from "./AnimatedLogo";
 
-const { width, height } = Dimensions.get("window")
+const { width, height } = Dimensions.get("window");
 
 const AnimatedSplashScreen = ({ onAnimationComplete }) => {
   // Animation values
-  const logoScale = useRef(new Animated.Value(0.3)).current
-  const logoOpacity = useRef(new Animated.Value(0)).current
-  const textOpacity = useRef(new Animated.Value(0)).current
-  const iconOpacity = useRef(new Animated.Value(0)).current
-  const iconPosition = useRef(new Animated.Value(20)).current
-  const backgroundOpacity = useRef(new Animated.Value(1)).current
+  const logoScale = useRef(new Animated.Value(0.3)).current;
+  const logoOpacity = useRef(new Animated.Value(0)).current;
+  const textOpacity = useRef(new Animated.Value(0)).current;
+  const iconOpacity = useRef(new Animated.Value(0)).current;
+  const iconPosition = useRef(new Animated.Value(20)).current;
+  const backgroundOpacity = useRef(new Animated.Value(1)).current;
 
   useEffect(() => {
     // Start the animation sequence
@@ -69,10 +69,11 @@ const AnimatedSplashScreen = ({ onAnimationComplete }) => {
     ]).start(() => {
       // Animation complete callback
       if (onAnimationComplete) {
-        onAnimationComplete()
+        onAnimationComplete();
       }
-    })
-  }, [])
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <Animated.View style={[styles.container, { opacity: backgroundOpacity }]}>
@@ -90,7 +91,9 @@ const AnimatedSplashScreen = ({ onAnimationComplete }) => {
             <AnimatedLogo size="large" />
           </Animated.View>
 
-          <Animated.Text style={[styles.title, { opacity: textOpacity }]}>Workly</Animated.Text>
+          <Animated.Text style={[styles.title, { opacity: textOpacity }]}>
+            Workly
+          </Animated.Text>
 
           <Animated.Text style={[styles.subtitle, { opacity: textOpacity }]}>
             Manage your work shifts with ease
@@ -106,13 +109,21 @@ const AnimatedSplashScreen = ({ onAnimationComplete }) => {
             ]}
           >
             <View style={styles.iconCircle}>
-              <MaterialIcons name="access-time" size={24} color={COLORS.primary} />
+              <MaterialIcons
+                name="access-time"
+                size={24}
+                color={COLORS.primary}
+              />
             </View>
             <View style={styles.iconCircle}>
               <MaterialIcons name="event" size={24} color={COLORS.primary} />
             </View>
             <View style={styles.iconCircle}>
-              <MaterialIcons name="notifications" size={24} color={COLORS.primary} />
+              <MaterialIcons
+                name="notifications"
+                size={24}
+                color={COLORS.primary}
+              />
             </View>
             <View style={styles.iconCircle}>
               <MaterialIcons name="cloud" size={24} color={COLORS.primary} />
@@ -121,8 +132,8 @@ const AnimatedSplashScreen = ({ onAnimationComplete }) => {
         </View>
       </GradientBackground>
     </Animated.View>
-  )
-}
+  );
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -176,6 +187,6 @@ const styles = StyleSheet.create({
     shadowRadius: 4,
     elevation: 2,
   },
-})
+});
 
-export default AnimatedSplashScreen
+export default AnimatedSplashScreen;

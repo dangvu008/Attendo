@@ -1,4 +1,10 @@
-import React, { useState, useEffect, useRef, useCallback, useMemo } from "react";
+import React, {
+  useState,
+  useEffect,
+  useRef,
+  useCallback,
+  useMemo,
+} from "react";
 import {
   View,
   Text,
@@ -10,7 +16,7 @@ import {
 import { MaterialIcons } from "@expo/vector-icons";
 import * as Haptics from "expo-haptics";
 import { useAppContext } from "../../context/AppContext";
-import { useTranslation } from "../../i18n/useTranslation-optimized";
+import { useTranslation } from "../../i18n/simple-useTranslation";
 import { COLORS } from "../../constants/colors";
 
 // Tối ưu hóa component con với React.memo
@@ -24,12 +30,12 @@ const LogItem = React.memo(({ icon, text, time, isActive }) => {
   );
 });
 
-const MultiButton = ({ 
-  onGoWork, 
-  onCheckIn, 
-  onPunch, 
-  onCheckOut, 
-  onComplete, 
+const MultiButton = ({
+  onGoWork,
+  onCheckIn,
+  onPunch,
+  onCheckOut,
+  onComplete,
   status = "not_started",
   showLogs = false,
   logs = [],
@@ -47,8 +53,14 @@ const MultiButton = ({
   const workTimer = useRef(null);
 
   // Memoize các giá trị tính toán
-  const buttonMode = useMemo(() => userSettings?.multiButtonMode || "full", [userSettings?.multiButtonMode]);
-  const hapticEnabled = useMemo(() => userSettings?.hapticFeedbackEnabled !== false, [userSettings?.hapticFeedbackEnabled]);
+  const buttonMode = useMemo(
+    () => userSettings?.multiButtonMode || "full",
+    [userSettings?.multiButtonMode]
+  );
+  const hapticEnabled = useMemo(
+    () => userSettings?.hapticFeedbackEnabled !== false,
+    [userSettings?.hapticFeedbackEnabled]
+  );
 
   // Tối ưu hóa các hàm với useCallback
   const triggerHapticFeedback = useCallback(() => {
@@ -85,10 +97,10 @@ const MultiButton = ({
 
   const startWorkDurationTimer = useCallback(() => {
     if (workTimer.current) clearInterval(workTimer.current);
-    
+
     setWorkDuration(0);
     workTimer.current = setInterval(() => {
-      setWorkDuration(prev => prev + 1);
+      setWorkDuration((prev) => prev + 1);
     }, 60000); // Update every minute
   }, []);
 
@@ -99,14 +111,17 @@ const MultiButton = ({
     }
   }, []);
 
-  const animateLogsContainer = useCallback((show) => {
-    Animated.timing(logsContainerHeight, {
-      toValue: show ? 1 : 0,
-      duration: 300,
-      easing: Easing.inOut(Easing.ease),
-      useNativeDriver: false,
-    }).start();
-  }, [logsContainerHeight]);
+  const animateLogsContainer = useCallback(
+    (show) => {
+      Animated.timing(logsContainerHeight, {
+        toValue: show ? 1 : 0,
+        duration: 300,
+        easing: Easing.inOut(Easing.ease),
+        useNativeDriver: false,
+      }).start();
+    },
+    [logsContainerHeight]
+  );
 
   const animateStatusChange = useCallback((newStatus) => {
     // Animation logic for status change
@@ -120,14 +135,25 @@ const MultiButton = ({
     animateStatusChange("going_to_work");
     startPulseAnimation();
     if (onGoWork) onGoWork();
-  }, [triggerHapticFeedback, startWorkDurationTimer, animateStatusChange, startPulseAnimation, onGoWork]);
+  }, [
+    triggerHapticFeedback,
+    startWorkDurationTimer,
+    animateStatusChange,
+    startPulseAnimation,
+    onGoWork,
+  ]);
 
   const handleCheckIn = useCallback(() => {
     triggerHapticFeedback();
     animateStatusChange("checked_in");
     stopPulseAnimation();
     if (onCheckIn) onCheckIn();
-  }, [triggerHapticFeedback, animateStatusChange, stopPulseAnimation, onCheckIn]);
+  }, [
+    triggerHapticFeedback,
+    animateStatusChange,
+    stopPulseAnimation,
+    onCheckIn,
+  ]);
 
   const handlePunch = useCallback(() => {
     triggerHapticFeedback();
@@ -145,16 +171,21 @@ const MultiButton = ({
     animateStatusChange("completed");
     stopWorkDurationTimer();
     if (onComplete) onComplete();
-  }, [triggerHapticFeedback, animateStatusChange, stopWorkDurationTimer, onComplete]);
+  }, [
+    triggerHapticFeedback,
+    animateStatusChange,
+    stopWorkDurationTimer,
+    onComplete,
+  ]);
 
   const toggleLogs = useCallback(() => {
-    setIsLogsVisible(prev => !prev);
+    setIsLogsVisible((prev) => !prev);
   }, []);
 
   // Effects
   useEffect(() => {
     setCurrentStatus(status);
-    
+
     if (status === "going_to_work") {
       startWorkDurationTimer();
       startPulseAnimation();
@@ -162,11 +193,17 @@ const MultiButton = ({
       stopWorkDurationTimer();
       stopPulseAnimation();
     }
-    
+
     return () => {
       stopWorkDurationTimer();
     };
-  }, [status, startWorkDurationTimer, stopWorkDurationTimer, startPulseAnimation, stopPulseAnimation]);
+  }, [
+    status,
+    startWorkDurationTimer,
+    stopWorkDurationTimer,
+    startPulseAnimation,
+    stopPulseAnimation,
+  ]);
 
   useEffect(() => {
     animateLogsContainer(isLogsVisible);
@@ -179,31 +216,34 @@ const MultiButton = ({
   // Render helpers
   const renderButton = useCallback(() => {
     const buttonConfig = {
-      "not_started": {
+      not_started: {
         text: t("home.goToWork"),
         icon: "directions-walk",
         color: COLORS.primary,
         onPress: handleGoWork,
       },
-      "going_to_work": {
+      going_to_work: {
         text: t("home.logCheckIn"),
         icon: "login",
         color: COLORS.success,
         onPress: handleCheckIn,
       },
-      "checked_in": {
-        text: currentStatus === "checked_in" ? t("home.logCheckOut") : t("home.logPunch"),
+      checked_in: {
+        text:
+          currentStatus === "checked_in"
+            ? t("home.logCheckOut")
+            : t("home.logPunch"),
         icon: currentStatus === "checked_in" ? "logout" : "touch-app",
         color: currentStatus === "checked_in" ? COLORS.warning : COLORS.info,
         onPress: currentStatus === "checked_in" ? handleCheckOut : handlePunch,
       },
-      "checked_out": {
+      checked_out: {
         text: t("home.logComplete"),
         icon: "done-all",
         color: COLORS.success,
         onPress: handleComplete,
       },
-      "completed": {
+      completed: {
         text: t("home.goToWork"),
         icon: "directions-walk",
         color: COLORS.primary,
@@ -214,7 +254,13 @@ const MultiButton = ({
     const config = buttonConfig[currentStatus] || buttonConfig["not_started"];
 
     return (
-      <Animated.View style={{ transform: [{ scale: currentStatus === "going_to_work" ? pulseAnim : 1 }] }}>
+      <Animated.View
+        style={{
+          transform: [
+            { scale: currentStatus === "going_to_work" ? pulseAnim : 1 },
+          ],
+        }}
+      >
         <TouchableOpacity
           style={[styles.button, { backgroundColor: config.color }]}
           onPress={config.onPress}
@@ -224,7 +270,16 @@ const MultiButton = ({
         </TouchableOpacity>
       </Animated.View>
     );
-  }, [currentStatus, t, pulseAnim, handleGoWork, handleCheckIn, handleCheckOut, handlePunch, handleComplete]);
+  }, [
+    currentStatus,
+    t,
+    pulseAnim,
+    handleGoWork,
+    handleCheckIn,
+    handleCheckOut,
+    handlePunch,
+    handleComplete,
+  ]);
 
   const renderLogs = useMemo(() => {
     const maxHeight = logsContainerHeight.interpolate({
@@ -248,14 +303,13 @@ const MultiButton = ({
   }, [logs, logsContainerHeight]);
 
   const renderWorkDuration = useMemo(() => {
-    if (currentStatus === "not_started" || currentStatus === "completed") return null;
-    
+    if (currentStatus === "not_started" || currentStatus === "completed")
+      return null;
+
     const hours = Math.floor(workDuration / 60);
     const minutes = workDuration % 60;
-    const durationText = hours > 0 
-      ? `${hours}h ${minutes}m` 
-      : `${minutes}m`;
-    
+    const durationText = hours > 0 ? `${hours}h ${minutes}m` : `${minutes}m`;
+
     return (
       <Text style={styles.durationText}>
         {t("home.workingFor", { duration: durationText })}
@@ -266,22 +320,22 @@ const MultiButton = ({
   return (
     <View style={styles.container}>
       {renderWorkDuration}
-      
+
       {renderButton()}
-      
+
       {logs.length > 0 && (
         <TouchableOpacity style={styles.logsToggle} onPress={toggleLogs}>
-          <MaterialIcons 
-            name={isLogsVisible ? "expand-less" : "expand-more"} 
-            size={24} 
-            color={COLORS.darkGray} 
+          <MaterialIcons
+            name={isLogsVisible ? "expand-less" : "expand-more"}
+            size={24}
+            color={COLORS.darkGray}
           />
           <Text style={styles.logsToggleText}>
             {isLogsVisible ? t("common.hideLogs") : t("common.showLogs")}
           </Text>
         </TouchableOpacity>
       )}
-      
+
       {renderLogs}
     </View>
   );

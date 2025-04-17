@@ -3,9 +3,11 @@ import { initReactI18next } from "react-i18next";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { STORAGE_KEYS } from "../constants/storage";
 
-// Import only the common translations for initial load
-import enCommon from "./translations/en/common";
-import viCommon from "./translations/vi/common";
+// Import translations
+import en from "./translations/en";
+import vi from "./translations/vi";
+
+// Đơn giản hóa hoàn toàn cho Snack.expo.dev
 
 // Hàm lấy ngôn ngữ từ AsyncStorage
 const getStoredLanguage = async () => {
@@ -22,41 +24,6 @@ const getStoredLanguage = async () => {
   }
 };
 
-// Load a namespace dynamically
-const loadNamespace = async (language, namespace) => {
-  try {
-    // Only load if not already loaded
-    if (!i18next.hasResourceBundle(language, namespace)) {
-      const module = await import(`./translations/${language}/${namespace}`);
-      i18next.addResourceBundle(language, namespace, module.default);
-      console.log(`Loaded namespace: ${namespace} for language: ${language}`);
-    }
-  } catch (error) {
-    console.error(
-      `Error loading namespace ${namespace} for ${language}:`,
-      error
-    );
-  }
-};
-
-// Load all namespaces for a language
-export const loadLanguageNamespaces = async (language) => {
-  const namespaces = [
-    "home",
-    "settings",
-    "shifts",
-    "notes",
-    "weather",
-    "backup",
-    "alarm",
-  ];
-
-  await Promise.all(
-    namespaces.map((namespace) => loadNamespace(language, namespace))
-  );
-  console.log(`All namespaces loaded for ${language}`);
-};
-
 // Khởi tạo i18next
 const initI18n = async () => {
   try {
@@ -65,21 +32,15 @@ const initI18n = async () => {
     await i18next.use(initReactI18next).init({
       compatibilityJSON: "v3",
       resources: {
-        en: { common: enCommon },
-        vi: { common: viCommon },
+        en: en,
+        vi: vi,
       },
-      ns: ["common"],
-      defaultNS: "common",
       lng: language,
       fallbackLng: "vi",
       interpolation: {
         escapeValue: false,
       },
-      partialBundledLanguages: true,
     });
-
-    // Load additional namespaces in the background
-    loadLanguageNamespaces(language);
 
     return i18next;
   } catch (error) {
@@ -88,10 +49,8 @@ const initI18n = async () => {
     await i18next.use(initReactI18next).init({
       compatibilityJSON: "v3",
       resources: {
-        vi: { common: viCommon },
+        vi: vi,
       },
-      ns: ["common"],
-      defaultNS: "common",
       lng: "vi",
       fallbackLng: "vi",
     });
